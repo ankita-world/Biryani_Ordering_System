@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>documents</title>
+</head>
+<body>
+<form action="{% url 'add_biryani' %}" method="post">
+    {% csrf_token %}
+    <table align="center" border="2" width="500px" height="250px">
+        <tr>
+            <th style="font-family: Algerian;background-color: steelblue;color: white;font-size: 50px">Add Biryani's</th>
+        </tr>
+        <tr>
+            <th>
+                <input type="text" placeholder="Biryani Name" name="name" required>
+            </th>
+        </tr>
+        <tr>
+            <th>
+                Select Biryani Type
+                <select name="id" multiple>
+                    {% for x in btypes %}
+                    <option>{{ x.name }}</option>
+                    {% endfor %}
+                </select>
+            </th>
+        </tr>
+        <tr>
+            <th>
+                <input type="number" placeholder="Price" name="price" required>
+            </th>
+        </tr>
+        <tr>
+            <th>
+                <button type="submit" style="background-color: blue;color: white;margin: 10px">Save</button>
+            </th>
+        </tr>
+        {% for x in messages %}
+        <tr>
+            <th style="color: plum;font-size: 25px">{{ x }}</th>
+        </tr>
+        {% endfor %}
+    </table>
+</form>
+
+<br><br><hr><br><br>
+
+
+
+<table align="center" border="2">
+    <tr>
+        <th colspan="4" style="background-color: steelblue;color: white;font-family: Algerian;font-size: 50px">Biryani's Detail</th>
+    </tr>
+    <tr style="background-color: lightpink;color: deeppink;font-size: 30px">
+        <th>Number</th>
+        <th>Name</th>
+        <th>Biryani Type</th>
+        <th>Biryani Price</th>
+    </tr>
+    {% for x in biryani %}
+    <tr>
+        <th>{{ x.id }}</th>
+        <th>{{ x.name }}</th>
+        <th>{{ x.biryani_Type }}</th>
+        <th>{{ x.price }}</th>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

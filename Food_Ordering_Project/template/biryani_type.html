@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        table, th,tr,td {
+            border:1px solid black;
+        }
+    </style>
+</head>
+<body>
+<form action="{% url 'add_btypes' %}" method="post">
+    {% csrf_token %}
+    <table align="center" border="2" width="500px">
+        <tr>
+            <th style="font-family: Algerian;background-color: steelblue;color: white;font-size: 35px"><h2>Add Biryani Type</h2></th>
+        </tr>
+        <tr>
+            <th><input type="text" placeholder="Biryani Type Name" name="name" required style="margin:10px"></th>
+        </tr>
+        <tr>
+         <th>
+             <button type="submit" style="background-color: blue;color: white;margin: 10px">Save</button>
+         </th>
+        </tr>
+        {% for x in messages %}
+                <tr>
+                    <th style="color: palegreen;font-size: 25px">{{ x }}</th>
+                </tr>
+            {% endfor %}
+
+    </table>
+</form>
+    <br><hr><br>
+<table align="center" border="2" width="500px">
+    <tr>
+        <th colspan="2" style="font-family: Algerian;background-color: steelblue;color: white;font-size: 50px">Types Of Biryani's</th>
+    </tr>
+    <tr style="background-color: pink;color: deeppink;font-size: 30px">
+        <th>Number</th>
+        <Th>Biryani Type Name</Th>
+    </tr>
+    {% for bt in btypes %}
+    <tr align="center" >
+        <td>{{bt.id}}</td>
+        <td>{{bt.name}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>
